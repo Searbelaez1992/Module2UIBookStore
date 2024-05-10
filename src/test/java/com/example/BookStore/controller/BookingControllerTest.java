@@ -98,7 +98,7 @@ public class BookingControllerTest {
     }
 
     @Test
-    @DisplayName("It Should Return all the Booking object form the database")
+    @DisplayName("It Should Return all the Booking object from the database")
     void ShouldFetchAllBookings() throws Exception {
 
         List<Booking> list = new ArrayList<>();

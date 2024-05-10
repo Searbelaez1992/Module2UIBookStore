@@ -81,7 +81,7 @@ public class UsersRepositoryTest {
     }
 
     @Test
-    @DisplayName("It should updated the User wit the phone 3213333333")
+    @DisplayName("It should updated the User with the phone 3213333333")
     void updateUser(){
 
         usersRepository.save(firstUser);

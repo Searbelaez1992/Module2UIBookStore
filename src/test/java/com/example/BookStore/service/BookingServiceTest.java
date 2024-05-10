@@ -126,8 +126,6 @@ public class BookingServiceTest {
     @DisplayName("It Should throw a Exception")
     void findBookingByIdForException() {
 
-        when(bookingRepository.findById(1l)).thenReturn(Optional.of(firstBooking));
-
         assertThrows(RuntimeException.class,() -> {
             bookingService.findBookingById(2l);
         });

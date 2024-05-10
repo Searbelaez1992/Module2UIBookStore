@@ -89,7 +89,7 @@ public class BookStoreRepositoryTest {
     }
 
     @Test
-    @DisplayName("It should updated the BookStore wit the Autor Isaac Asimov")
+    @DisplayName("It should updated the BookStore with the SoldQTY 800")
     void updateBookStore(){
 
         bookStoreRepository.save(firstBookStore);

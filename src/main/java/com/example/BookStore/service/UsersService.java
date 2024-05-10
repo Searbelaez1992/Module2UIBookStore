@@ -23,15 +23,18 @@ public class UsersService {
     }
 
     public Users save(Users users){
-        Users entity = usersRepository.save(users);
-        return entity;
+
+        if(users.getId() !=null )
+            users.setId(null);
+        return usersRepository.save(users);
+
     }
 
     public Users findUsersById(Long userId) {
 
-        Users users = usersRepository.findById(userId)
+        return usersRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid user id "+userId));
-        return users;
+
     }
 
     public Users updateUsers(Long id,  Users users){

@@ -95,8 +95,6 @@ public class ProductServiceTest {
     @DisplayName("It Should throw a Exception")
     void findProductByIdForException() {
 
-        when(productRepository.findById(1l)).thenReturn(Optional.of(theFrankensteinProduct));
-
         assertThrows(RuntimeException.class,() -> {
             productService.findProductById(2l);
         });

@@ -22,15 +22,15 @@ public class ProductService {
 
     public Product addProduct(Product product){
 
-        Product entity = productRepository.save(product);
-        return entity;
+        if(product.getId() !=null )
+            product.setId(null);
+        return productRepository.save(product);
     }
 
     public Product findProductById(Long idProduct) {
 
-        Product product = productRepository.findById(idProduct)
+        return productRepository.findById(idProduct)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid product id "+idProduct));
-        return product;
     }
 
     public Product updateProduct(Long id,  Product product){

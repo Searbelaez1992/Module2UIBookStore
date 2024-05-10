@@ -38,7 +38,7 @@ public class UsersController {
 
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Users updateProduct(@PathVariable long id, @RequestBody Users users) throws Exception {
+    public Users updateProduct(@PathVariable long id, @RequestBody Users users) {
          return usersService.updateUsers(id,users);
 
     }

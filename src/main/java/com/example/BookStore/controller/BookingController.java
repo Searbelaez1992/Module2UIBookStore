@@ -32,10 +32,7 @@ public class BookingController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Booking saveBooking(@RequestBody Booking booking) {
-        Booking newBooking =bookingService.save(booking);
-
-        return newBooking;
-
+        return bookingService.save(booking);
     }
 
     @PostMapping("/{id}")

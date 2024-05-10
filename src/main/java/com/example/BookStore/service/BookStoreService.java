@@ -25,6 +25,8 @@ public class BookStoreService {
 
     public BookStore save(BookStore bookStore){
 
+        if(bookStore.getId() !=null )
+            bookStore.setId(null);
         BookStore entity = bookStoreRepository.save(bookStore);
         bookStore.setProduct(productService.findProductById(bookStore.getProduct().getId()));
 
@@ -33,9 +35,8 @@ public class BookStoreService {
 
     public BookStore findBookStoreById(Long bookStoreId) {
 
-        BookStore bookStore = bookStoreRepository.findById(bookStoreId)
+        return bookStoreRepository.findById(bookStoreId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid BookStore id "+bookStoreId));
-        return bookStore;
     }
 
     public BookStore updateBookStore(Long id,  BookStore bookStore){

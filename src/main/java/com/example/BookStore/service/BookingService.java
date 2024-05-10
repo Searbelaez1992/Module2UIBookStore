@@ -27,7 +27,8 @@ public class BookingService {
     }
 
     public Booking save(Booking booking){
-
+        if(booking.getId() !=null )
+            booking.setId(null);
         Booking entity = bookingRepository.save(booking);
         booking.setProduct(productService.findProductById(booking.getProduct().getId()));
         booking.setUsers(usersService.findUsersById(booking.getUsers().getId()));
@@ -36,9 +37,8 @@ public class BookingService {
 
     public Booking findBookingById(Long bookingId) {
 
-        Booking booking = bookingRepository.findById(bookingId)
+        return bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid booking id "+bookingId));
-        return booking;
     }
 
     public Booking updateBooking(Long id,  Booking booking){

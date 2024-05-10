@@ -87,7 +87,7 @@ public class BookStoreControllerTest {
     }
 
     @Test
-    @DisplayName("It Should Return all the BookStore object form the database")
+    @DisplayName("It Should Return all the BookStore object from the database")
     void ShouldFetchAllBookStores() throws Exception {
 
         List<BookStore> list = new ArrayList<>();

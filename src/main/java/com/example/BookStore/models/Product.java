@@ -1,19 +1,11 @@
 package com.example.BookStore.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.Set;
 
 @Entity
 @Table(name="PRODUCT")
-//@Builder
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)//@GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,10 +42,6 @@ public class Product {
     public Product(String name) {
         this.name = name;
     }
-
-    //public Product() {
-
-    //}
 
     public String getDescription() {
         return description;
@@ -102,6 +90,4 @@ public class Product {
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
-
-
 }

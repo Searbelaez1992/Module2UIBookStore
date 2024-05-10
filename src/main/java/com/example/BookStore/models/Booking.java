@@ -2,13 +2,8 @@ package com.example.BookStore.models;
 
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.sql.Time;
 import java.util.Date;
-import java.util.Set;
-
 
 @Entity
 @Table(name="BOOKING")
@@ -17,7 +12,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="BOOKING_ID")
-    private long id;
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "user_Id")
     private Users users;
@@ -35,11 +30,6 @@ public class Booking {
     @Column(name="QUANTITY")
     private int quantity;
 
-
-
-
-
-
     public Booking(Users users, String deliveryAddress, Date deliveryDate, Time deliveryTime, long bookingStatusId, int quantity, Product product) {
         this.users = users;
         this.deliveryAddress = deliveryAddress;
@@ -54,7 +44,7 @@ public class Booking {
         super();
     }
 
-    public Booking(String deliveryAddress, long id, Users users, Date deliveryDate, Time deliveryTime, long bookingStatusId, int quantity, Product product) {
+    public Booking(String deliveryAddress, Long id, Users users, Date deliveryDate, Time deliveryTime, long bookingStatusId, int quantity, Product product) {
         this.deliveryAddress = deliveryAddress;
         this.id = id;
         this.users = users;
@@ -73,11 +63,11 @@ public class Booking {
         this.deliveryDate = deliveryDate;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

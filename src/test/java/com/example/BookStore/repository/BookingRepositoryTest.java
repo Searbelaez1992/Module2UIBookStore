@@ -77,7 +77,7 @@ public class BookingRepositoryTest {
     }
 
     @Test
-    @DisplayName("It should return the Products list with size of 4")
+    @DisplayName("It should return the Booking list with size of 4")
     void getAllBookings(){
 
         bookingRepository.save(firstBooking);
@@ -103,7 +103,7 @@ public class BookingRepositoryTest {
     }
 
     @Test
-    @DisplayName("It should updated the Booking wit the Autor Isaac Asimov")
+    @DisplayName("It should updated the Booking with the Delivery Address Street 43")
     void updateBooking(){
 
         bookingRepository.save(firstBooking);

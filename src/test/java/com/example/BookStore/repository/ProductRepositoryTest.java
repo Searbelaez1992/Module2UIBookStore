@@ -79,7 +79,7 @@ public class ProductRepositoryTest {
     }
 
     @Test
-    @DisplayName("It should updated the product wit the Autor Isaac Asimov")
+    @DisplayName("It should update the product with the Autor Isaac Asimov")
     void updateProduct(){
 
         productRepository.save(theFrankensteinProduct);
@@ -95,7 +95,7 @@ public class ProductRepositoryTest {
 
     @Test
     @DisplayName("It should delete the existing product")
-    void deletetProduct(){
+    void deleteProduct(){
 
 
         productRepository.save(theFrankensteinProduct);

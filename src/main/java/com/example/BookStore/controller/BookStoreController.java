@@ -32,9 +32,8 @@ public class BookStoreController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BookStore saveBookStore(@RequestBody BookStore bookStore) {
-        BookStore newBookStore =bookStoreService.save(bookStore);
+        return bookStoreService.save(bookStore);
 
-        return newBookStore;
     }
 
     @PostMapping("/{id}")

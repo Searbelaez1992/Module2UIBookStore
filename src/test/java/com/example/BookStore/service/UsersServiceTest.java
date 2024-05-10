@@ -1,7 +1,5 @@
 package com.example.BookStore.service;
 
-
-import com.example.BookStore.models.Product;
 import com.example.BookStore.models.Users;
 import com.example.BookStore.repository.UsersRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -100,8 +98,6 @@ public class UsersServiceTest {
     @Test
     @DisplayName("It Should throw a Exception")
     void findUserByIdForException() {
-
-        when(usersRepository.findById(1l)).thenReturn(Optional.of(firstUser));
 
         assertThrows(RuntimeException.class,() -> {
             usersService.findUsersById(2l);

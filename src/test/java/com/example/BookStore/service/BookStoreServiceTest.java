@@ -108,8 +108,6 @@ public class BookStoreServiceTest {
     @DisplayName("It Should throw a Exception")
     void findBookStoreByIdForException() {
 
-        when(bookStoreRepository.findById(1l)).thenReturn(Optional.of(firstBookStore));
-
         assertThrows(RuntimeException.class,() -> {
             bookStoreService.findBookStoreById(2l);
         });
