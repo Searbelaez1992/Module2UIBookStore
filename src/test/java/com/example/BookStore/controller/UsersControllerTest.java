@@ -90,7 +90,7 @@ public class UsersControllerTest {
         list.add(firstUser);
         list.add(secondUser);
 
-        when(usersService.getUsers()).thenReturn(list);
+        //when(usersService.getUsers("street")).thenReturn(list);
 
         this.mockMvc.perform(get("/api/users"))
                 .andExpect(status().isOk())

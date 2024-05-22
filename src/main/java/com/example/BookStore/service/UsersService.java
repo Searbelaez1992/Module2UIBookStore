@@ -18,7 +18,9 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public List<Users> getUsers(){
+    public List<Users> getUsers(String keyWord1,String keyWord2,String keyWord3,String keyWord4,String keyWord5 ){
+        if(keyWord1 != null || keyWord2 != null || keyWord3 != null || keyWord4 != null || keyWord5 != null)
+            return usersRepository.findAll(keyWord1, keyWord2, keyWord3, keyWord4, keyWord5);
         return usersRepository.findAll();
     }
 

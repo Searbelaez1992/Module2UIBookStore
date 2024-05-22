@@ -1,52 +1,74 @@
 package com.example.BookStore.controller;
 
 import com.example.BookStore.models.BookStore;
-import com.example.BookStore.models.Booking;
+import com.example.BookStore.models.Product;
 import com.example.BookStore.service.BookStoreService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.example.BookStore.service.ProductService;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
-@RestController
-@RequestMapping("/api/bookstore")
+@Controller
 public class BookStoreController {
 
     private final BookStoreService bookStoreService;
 
-    public BookStoreController(BookStoreService bookStoreService) {
+    private final ProductService productService;
+
+    public BookStoreController(BookStoreService bookStoreService, ProductService productService) {
         this.bookStoreService = bookStoreService;
+        this.productService = productService;
     }
 
-    @GetMapping
-    public List<BookStore> getBookStores() {
-        return bookStoreService.findAll();
+    @RequestMapping("/bookStore")
+    public String getBookStores(Model model, @Param("keyWord1") String keyWord1, @Param("keyWord2") String keyWord2, @Param("keyWord3") String keyWord3, @Param("keyWord4") String keyWord4, @Param("keyWord5") String keyWord5, @Param("keyWord6") String keyWord6) {
+
+        model.addAttribute("listBookStore",bookStoreService.getBookStores(keyWord1,keyWord2,keyWord3, keyWord4, keyWord5,keyWord6));
+        model.addAttribute("keyWord1",keyWord1);
+        model.addAttribute("keyWord2",keyWord2);
+        model.addAttribute("keyWord3",keyWord3);
+        model.addAttribute("keyWord4",keyWord4);
+        model.addAttribute("keyWord5",keyWord5);
+        model.addAttribute("keyWord6",keyWord6);
+
+        return "bookStore";
+    }
+    @RequestMapping("/newBookStore")
+    public String showFormNewBookStore(Model model){
+        List<Product> listOfProducts = productService.getProducts(null,null,null,null);
+        BookStore bookStore = new BookStore();
+        model.addAttribute("BookStore", bookStore);
+        model.addAttribute("listOfProducts", listOfProducts);
+        return "new_bookStore";
     }
 
-    @GetMapping("/{id}")
-    public BookStore getBookStore(@PathVariable Long id) {
-        return bookStoreService.findBookStoreById(id);
+    @RequestMapping(value = "/saveBookStore", method = RequestMethod.POST)
+    public String saveBookStore(@ModelAttribute("BookStore") BookStore bookStore){
+        bookStoreService.save(bookStore);
+        return "redirect:/bookStore";
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public BookStore saveBookStore(@RequestBody BookStore bookStore) {
-        return bookStoreService.save(bookStore);
-
+    @RequestMapping("/editBookStore/{id}")
+    public ModelAndView showFormUpdateBookStore(@PathVariable(name="id") Long id){
+        ModelAndView model = new ModelAndView("edit_bookStore");
+        BookStore bookStore = bookStoreService.findBookStoreById(id);
+        model.addObject("BookStore", bookStore);
+        return model;
     }
 
-    @PostMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public BookStore updateBookStore(@PathVariable long id, @RequestBody BookStore bookStore) throws Exception {
+    @RequestMapping(value = "/updateBookStore", method = RequestMethod.POST)
+    public String UpdateBookStore(@ModelAttribute("BookStore") BookStore bookStore){
+        bookStoreService.updateBookStore(bookStore.getId(),bookStore);
 
-        return bookStoreService.updateBookStore(id,bookStore);
+        return "redirect:/bookStore";
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBookStore(@PathVariable Long id)
-    {
+    @RequestMapping("/deleteBookStore/{id}")
+    public String deletBookStore(@PathVariable(name="id") Long id){
         bookStoreService.deleteBookStore(id);
-        return ResponseEntity.noContent().build();
+        return "redirect:/bookStore";
     }
 }

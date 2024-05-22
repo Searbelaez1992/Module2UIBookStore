@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">BookShop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/productsM">Catalogue Manager</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/productsC">Catalogue Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bookingM">Booking Manager</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bookingC">Booking Customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/bookStore">Store</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/users">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/editUser/1">User profile</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h4 class="mx-sm-2 mb-6">Create Product</h4>
+            <div class="card-body">
+                <form th:action="@{/saveProduct}" th:object="${Products}" method="post">
+                    <div class="form-group">
+                        <label>Name: </label>
+                        <input type="text" name="name" th:field="*{name}" class="form-control" placeholder="Enter name of the product">
+                        <label>Author: </label>
+                        <input type="text" name="author" th:field="*{author}" class="form-control" placeholder="Enter author of the product">
+                        <label>Description: </label>
+                        <input type="text" name="description" th:field="*{description}" class="form-control" placeholder="Enter description of the product">
+                        <label>Price: </label>
+                        <input type="text" name="price" th:field="*{price}" class="form-control" placeholder="Enter price of the product">
+                        <label>Image: </label>
+                        <input type="text" name="imagePath" th:field="*{imagePath}" class="form-control" placeholder="Enter phone of the product">
+                    </div>
+
+                    <div class="box-footer">
+                        <a class="btn btn-secondary" th:href="@{/productsM}">Cancel</a>
+                        <button class="btn btn-primary">Save</button>
+
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
