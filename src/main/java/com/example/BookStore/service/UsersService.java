@@ -1,6 +1,5 @@
 package com.example.BookStore.service;
 
-
 import com.example.BookStore.models.Users;
 import com.example.BookStore.repository.UsersRepository;
 import org.springframework.http.HttpStatus;
@@ -16,6 +15,10 @@ public class UsersService {
 
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
+    }
+
+    public List<Users> findAll(){
+        return usersRepository.findAll();
     }
 
     public List<Users> getUsers(String keyWord1,String keyWord2,String keyWord3,String keyWord4,String keyWord5 ){

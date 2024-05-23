@@ -23,6 +23,11 @@ public class BookingService {
         this.bookingStatusService = bookingStatusService;
     }
 
+    public List<Booking> findAll(){
+        return bookingRepository.findAll();
+    }
+
+
     public List<Booking> getBookings(String keyWord1,String keyWord2,String keyWord3,String keyWord4,String keyWord5){
 
         if(keyWord1 != null || keyWord2 != null || keyWord3 != null || keyWord4 != null || keyWord5 != null)

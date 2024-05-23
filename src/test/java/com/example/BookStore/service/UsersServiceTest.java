@@ -77,7 +77,7 @@ public class UsersServiceTest {
 
         when(usersRepository.findAll()).thenReturn(list);
 
-        List<Users> users = usersService.getUsers("street");
+        List<Users> users = usersService.findAll();
 
         assertEquals(2,users.size());
         assertNotNull(users);

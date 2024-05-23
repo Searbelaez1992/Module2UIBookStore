@@ -19,6 +19,10 @@ public class BookStoreService {
         this.productService = productService;
     }
 
+    public List<BookStore> findAll(){
+        return bookStoreRepository.findAll();
+    }
+
     public List<BookStore> getBookStores(String keyWord1,String keyWord2,String keyWord3,String keyWord4,String keyWord5,String keyWord6 ){
         if(keyWord1 != null || keyWord2 != null || keyWord3 != null || keyWord4 != null || keyWord5 != null || keyWord6 != null)
             return bookStoreRepository.findAll(keyWord1, keyWord2, keyWord3, keyWord4, keyWord5, keyWord6);

@@ -1,6 +1,7 @@
 package com.example.BookStore.service;
 
 import com.example.BookStore.models.Booking;
+import com.example.BookStore.models.BookingStatus;
 import com.example.BookStore.models.Product;
 import com.example.BookStore.models.Users;
 import com.example.BookStore.repository.BookingRepository;
@@ -63,11 +64,11 @@ public class BookingServiceTest {
         theFrankensteinProduct.setAuthor("Mary Shelley");
         theFrankensteinProduct.setPrice(70);
         theFrankensteinProduct.setImagePath("https://ik.imagekit.io/panmac/9781509827756.jpg");
+        BookingStatus bookingStatus = new BookingStatus(1L, "SUBMITTED");
         firstBooking.setProduct(theFrankensteinProduct);
         firstBooking.setDeliveryAddress("calle 14");
-        Date date = new Date();
-        firstBooking.setDeliveryDate(date);
-        firstBooking.setBookingStatusId(1);
+        firstBooking.setDeliveryDate("2024-04-29");
+        firstBooking.setBookingStatus(bookingStatus);
         firstBooking.setQuantity(2);
 
         secondBooking = new Booking();
@@ -75,8 +76,8 @@ public class BookingServiceTest {
         secondBooking.setUsers(firstUser);
         secondBooking.setProduct(theFrankensteinProduct);
         secondBooking.setDeliveryAddress("calle 27");
-        secondBooking.setDeliveryDate(date);
-        secondBooking.setBookingStatusId(2);
+        secondBooking.setDeliveryDate("2024-04-29");
+        secondBooking.setBookingStatus(bookingStatus);
         secondBooking.setQuantity(10);
     }
 

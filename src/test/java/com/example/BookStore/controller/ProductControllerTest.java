@@ -84,7 +84,7 @@ public class ProductControllerTest {
         list.add(theFrankensteinProduct);
         list.add(itProduct);
 
-        when(productService.getProducts()).thenReturn(list);
+        when(productService.findAll()).thenReturn(list);
 
         this.mockMvc.perform(get("/api/product"))
                 .andExpect(status().isOk())

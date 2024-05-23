@@ -1,6 +1,7 @@
 package com.example.BookStore.controller;
 
 import com.example.BookStore.models.Booking;
+import com.example.BookStore.models.BookingStatus;
 import com.example.BookStore.models.Product;
 import com.example.BookStore.models.Users;
 import com.example.BookStore.service.BookingService;
@@ -63,12 +64,13 @@ public class BookingControllerTest {
         theFrankensteinProduct.setDescription("One of BBC's 100 Novels That Shaped Our World");
         theFrankensteinProduct.setAuthor("Mary Shelley");
         theFrankensteinProduct.setPrice(70);
+        BookingStatus bookingStatus = new BookingStatus(1L, "SUBMITTED");
         theFrankensteinProduct.setImagePath("https://ik.imagekit.io/panmac/9781509827756.jpg");
         firstBooking.setProduct(theFrankensteinProduct);
         firstBooking.setDeliveryAddress("calle 14");
         Date date = new Date();
-        firstBooking.setDeliveryDate(date);
-        firstBooking.setBookingStatusId(1);
+        firstBooking.setDeliveryDate("2024-04-29");
+        firstBooking.setBookingStatus(bookingStatus);
         firstBooking.setQuantity(2);
 
         secondBooking = new Booking();
@@ -76,8 +78,8 @@ public class BookingControllerTest {
         secondBooking.setUsers(firstUser);
         secondBooking.setProduct(theFrankensteinProduct);
         secondBooking.setDeliveryAddress("calle 27");
-        secondBooking.setDeliveryDate(date);
-        secondBooking.setBookingStatusId(2);
+        secondBooking.setDeliveryDate("2024-04-29");
+        secondBooking.setBookingStatus(bookingStatus);
         secondBooking.setQuantity(10);
     }
 

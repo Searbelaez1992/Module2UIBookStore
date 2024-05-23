@@ -16,6 +16,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public List<Product> findAll(){
+        return productRepository.findAll();
+    }
+
     public List<Product> getProducts(String keyWord1,String keyWord2,String keyWord3,String keyWord4){
         if(keyWord1 != null || keyWord2 != null || keyWord3 != null || keyWord4 != null )
             return productRepository.findAll(keyWord1, keyWord2, keyWord3, keyWord4);
