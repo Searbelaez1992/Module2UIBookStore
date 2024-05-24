@@ -88,7 +88,7 @@ public class BookingRepositoryTest {
 
         assertNotNull(list);
         assertThat(list).isNotNull();
-        assertEquals(4,list.size());
+        assertEquals(5,list.size());
     }
 
     @Test
@@ -132,7 +132,7 @@ public class BookingRepositoryTest {
         Optional<Booking> existingBooking = bookingRepository.findById(id);
         List<Booking> list = bookingRepository.findAll();
 
-        assertEquals(3,list.size());
+        assertEquals(4,list.size());
         assertThat(existingBooking).isEmpty();
 
     }
