@@ -1,6 +1,7 @@
 package com.example.BookStore.models;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import java.sql.Time;
 import java.util.Date;
@@ -21,21 +22,24 @@ public class Booking {
     private Product product;
     @Column(name="DELIVERY_ADDRESS")
     private String deliveryAddress;
+    @JsonFormat(pattern = "yyy-MM-dd", shape = JsonFormat.Shape.STRING)
     @Column(name="DELIVERY_DATE")
-    private Date deliveryDate;
+    private String deliveryDate;
+    @JsonFormat(pattern = "HH:mm", shape = JsonFormat.Shape.STRING)
     @Column(name="DELIVERY_TIME")
-    private Time deliveryTime;
-    @Column(name="BOOKINGSTATUS_ID")
-    private long bookingStatusId;
+    private String deliveryTime;
+    @ManyToOne
+    @JoinColumn(name = "bookingstatus_id")
+    private BookingStatus bookingStatus;
     @Column(name="QUANTITY")
     private int quantity;
 
-    public Booking(Users users, String deliveryAddress, Date deliveryDate, Time deliveryTime, long bookingStatusId, int quantity, Product product) {
+    public Booking(Users users, String deliveryAddress, String deliveryDate, String deliveryTime, BookingStatus bookingStatus, int quantity, Product product) {
         this.users = users;
         this.deliveryAddress = deliveryAddress;
         this.deliveryDate = deliveryDate;
         this.deliveryTime = deliveryTime;
-        this.bookingStatusId = bookingStatusId;
+        this.bookingStatus = bookingStatus;
         this.quantity = quantity;
         this.product = product;
     }
@@ -44,22 +48,22 @@ public class Booking {
         super();
     }
 
-    public Booking(String deliveryAddress, Long id, Users users, Date deliveryDate, Time deliveryTime, long bookingStatusId, int quantity, Product product) {
+    public Booking(String deliveryAddress, Long id, Users users, String deliveryDate, String deliveryTime, BookingStatus bookingStatus, int quantity, Product product) {
         this.deliveryAddress = deliveryAddress;
         this.id = id;
         this.users = users;
         this.deliveryDate = deliveryDate;
         this.deliveryTime = deliveryTime;
-        this.bookingStatusId = bookingStatusId;
+        this.bookingStatus = bookingStatus;
         this.quantity = quantity;
         this.product = product;
     }
 
-    public Date getDeliveryDate() {
+    public String getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 
@@ -87,20 +91,20 @@ public class Booking {
         this.deliveryAddress = deliveryAddress;
     }
 
-    public Time getDeliveryTime() {
+    public String getDeliveryTime() {
         return deliveryTime;
     }
 
-    public void setDeliveryTime(Time deliveryTime) {
+    public void setDeliveryTime(String deliveryTime) {
         this.deliveryTime = deliveryTime;
     }
 
-    public long getBookingStatusId() {
-        return bookingStatusId;
+    public BookingStatus getBookingStatus() {
+        return bookingStatus;
     }
 
-    public void setBookingStatusId(long bookingStatusId) {
-        this.bookingStatusId = bookingStatusId;
+    public void setBookingStatus(BookingStatus bookingStatus) {
+        this.bookingStatus = bookingStatus;
     }
 
     public int getQuantity() {
@@ -128,7 +132,7 @@ public class Booking {
                 ", deliveryAddress='" + deliveryAddress + '\'' +
                 ", deliveryDate=" + deliveryDate +
                 ", deliveryTime=" + deliveryTime +
-                ", bookingStatusId=" + bookingStatusId +
+                ", bookingStatus=" + bookingStatus +
                 ", quantity=" + quantity +
                 '}';
     }

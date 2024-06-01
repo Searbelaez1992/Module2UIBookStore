@@ -73,7 +73,7 @@ public class ProductServiceTest {
 
         when(productRepository.findAll()).thenReturn(list);
 
-        List<Product> products = productService.getProducts();
+        List<Product> products = productService.findAll();
 
         assertEquals(2,products.size());
         assertNotNull(products);

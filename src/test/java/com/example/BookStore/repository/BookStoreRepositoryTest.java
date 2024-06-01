@@ -73,7 +73,7 @@ public class BookStoreRepositoryTest {
 
         assertNotNull(list);
         assertThat(list).isNotNull();
-        assertEquals(4,list.size());
+        assertEquals(5,list.size());
     }
 
     @Test
@@ -117,7 +117,7 @@ public class BookStoreRepositoryTest {
         Optional<BookStore> existingBookStore = bookStoreRepository.findById(id);
         List<BookStore> list = bookStoreRepository.findAll();
 
-        assertEquals(3,list.size());
+        assertEquals(4,list.size());
         assertThat(existingBookStore).isEmpty();
 
     }

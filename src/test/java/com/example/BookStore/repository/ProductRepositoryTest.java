@@ -63,7 +63,7 @@ public class ProductRepositoryTest {
 
         assertNotNull(list);
         assertThat(list).isNotNull();
-        assertEquals(5,list.size());
+        assertEquals(6,list.size());
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ProductRepositoryTest {
         Optional<Product> existingProduct = productRepository.findById(id);
         List<Product> list = productRepository.findAll();
 
-        assertEquals(4,list.size());
+        assertEquals(5,list.size());
         assertThat(existingProduct).isEmpty();
 
     }

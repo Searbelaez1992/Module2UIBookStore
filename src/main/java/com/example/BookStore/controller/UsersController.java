@@ -1,6 +1,5 @@
 package com.example.BookStore.controller;
 
-
 import com.example.BookStore.models.Users;
 import com.example.BookStore.service.UsersService;
 import org.springframework.http.HttpStatus;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/users")
 public class UsersController {
 
@@ -21,7 +21,7 @@ public class UsersController {
 
     @GetMapping
     public List<Users> getUsers() {
-        return usersService.getUsers();
+        return usersService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -39,7 +39,7 @@ public class UsersController {
     @PostMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Users updateProduct(@PathVariable long id, @RequestBody Users users) {
-         return usersService.updateUsers(id,users);
+        return usersService.updateUsers(id,users);
 
     }
 
