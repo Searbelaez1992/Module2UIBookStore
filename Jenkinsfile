@@ -12,7 +12,33 @@ pipeline {
             
         }
         
-       
+        stage('Static Code Analysis') {
+            steps {
+                sh "mvn pmd:pmd"
+                sh "mvn checkstyle:checkstyle"
+            }
+        }
+        
+        stage('Publish Static Code Analysis Reports') {
+            steps {
+                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: 'reports/pmd/pmd.html')]
+            }
+        }
+        
+        
+        stage('Test Coverage') {
+            steps {
+                junit 'target/surefire-reports/**/*.xml'
+                jacoco()
+            }
+        }
+        
+        stage('Run Unit Test Cases') {
+            steps {
+                sh "mvn clean test"
+            }
+            
+        }
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
