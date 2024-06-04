@@ -24,7 +24,6 @@ pipeline {
             }
         }
         
-        
         stage('Test Coverage') {
             steps {
                 junit 'target/surefire-reports/**/*.xml'
