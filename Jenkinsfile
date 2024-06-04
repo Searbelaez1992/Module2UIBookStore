@@ -23,7 +23,6 @@ pipeline {
                 recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: 'reports/pmd/pmd.html')]
             }
         }
-        
         stage('Test Coverage') {
             steps {
                 junit 'target/surefire-reports/**/*.xml'
