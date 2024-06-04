@@ -39,6 +39,7 @@ public class BookingService {
         if(booking.getId() !=null )
             booking.setId(null);
         Booking entity = bookingRepository.save(booking);
+        booking.setBookingStatus(bookingStatusService.findBookingStatustById(booking.getBookingStatus().getId()));
         booking.setProduct(productService.findProductById(booking.getProduct().getId()));
         booking.setUsers(usersService.findUsersById(booking.getUsers().getId()));
         return entity;
