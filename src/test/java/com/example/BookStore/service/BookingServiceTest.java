@@ -37,6 +37,9 @@ public class BookingServiceTest {
     private ProductService productService;
 
     @Mock
+    private BookingStatusService bookingStatusService;
+
+    @Mock
     private UsersService usersService;
 
     private Booking firstBooking;
@@ -87,6 +90,7 @@ public class BookingServiceTest {
 
         when(productService.findProductById(anyLong())).thenReturn(firstBooking.getProduct());
         when(usersService.findUsersById(anyLong())).thenReturn(firstBooking.getUsers());
+        when(bookingStatusService.findBookingStatustById(anyLong())).thenReturn(firstBooking.getBookingStatus());
         when(bookingRepository.save(any(Booking.class))).thenReturn(firstBooking);
 
         Booking newBooking = bookingService.save(firstBooking);
