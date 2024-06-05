@@ -21,7 +21,7 @@ pipeline {
         
         stage('Publish Static Code Analysis Reports') {
             steps {
-                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: 'reports/pmd/pmd.html')]
+                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: '**/target//pmd.xml')]
             }
         }
         
