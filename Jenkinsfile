@@ -29,7 +29,6 @@ pipeline {
                 jacoco()
             }
         }
-        
         stage('Run Unit Test Cases') {
             steps {
                 sh "mvn clean test"
