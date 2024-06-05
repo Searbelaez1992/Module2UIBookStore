@@ -34,7 +34,6 @@ pipeline {
             steps {
                 sh "mvn clean test"
             }
-            
         }
         stage('Build') {
             steps {
