@@ -16,12 +16,13 @@ pipeline {
             steps {
                 sh "mvn pmd:pmd"
                 sh "mvn checkstyle:checkstyle"
+                sh "mvn spotbugs:spotbugs"
             }
         }
         
         stage('Publish Static Code Analysis Reports') {
             steps {
-                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: '**/target//pmd.xml')]
+                recordIssues sourceCodeRetention: 'LAST_BUILD', tools: [checkStyle(pattern: 'reports/checkstyle/checkstyle.xml'), pmdParser(pattern: '**/target/pmd.xml'), spotBugs(pattern: '**/target/spotbugsXml.xml', useRankAsPriority: true)]
             }
         }
         
