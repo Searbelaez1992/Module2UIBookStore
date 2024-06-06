@@ -85,23 +85,17 @@
             </plugin>
 
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.4</version>
-                <configuration>
-                    <xmlOutput>true</xmlOutput>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutputDirectory>reports/findbugs</xmlOutputDirectory>
-                    <skip>true</skip>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>findbugs</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.8.5.0</version>
+                <dependencies>
+                    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+                    <dependency>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs</artifactId>
+                        <version>4.8.5</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <plugin>
