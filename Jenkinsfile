@@ -9,7 +9,6 @@ pipeline {
             steps {
                 git url: 'https://github.com/Searbelaez1992/Module2UIBookStore.git', branch: "main"
             }
-            
         }
         stage('Static Code Analysis') {
             steps {
